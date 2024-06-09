@@ -1,0 +1,45 @@
+﻿@{
+    Layout = null;
+}
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>@ViewData["Title"] - HtmlPageApp</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            text-align: center;
+            padding: 50px;
+        }
+        button {
+            padding: 10px 20px;
+            font-size: 16px;
+            cursor: pointer;
+        }
+        #result {
+            margin-top: 20px;
+            font-size: 18px;
+            color: green;
+        }
+    </style>
+</head>
+<body>
+    <h1 class="display-4">Welcome</h1>
+    <p>Click the button to run a C# function:</p>
+    <button id="runFunctionButton">Run C# Function</button>
+    <p id="result"></p>
+
+    <script>
+        document.getElementById("runFunctionButton").addEventListener("click", function() {
+            fetch('/Home/RunFunction')
+                .then(response => response.text())
+                .then(data => {
+                    document.getElementById("result").innerText = data;
+                });
+        });
+    </script>
+</body>
+</html>
